@@ -8,6 +8,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 class PageObject:
     class_name_title = "title"
+    balance_value = "//div[@ng-hide='noAccount'][1]/strong[2]"
 
     def __init__(self, browser=None, driver=None):
         if driver:
@@ -37,3 +38,6 @@ class PageObject:
             return is_url and is_title
         else:
             return is_url
+
+    # def get_balance_value(self):
+    #     return self.driver.find_element(By.XPATH, self.balance_value).text
