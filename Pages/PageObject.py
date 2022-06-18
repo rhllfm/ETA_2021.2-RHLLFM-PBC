@@ -38,6 +38,3 @@ class PageObject:
             return is_url and is_title
         else:
             return is_url
-
-    # def get_balance_value(self):
-    #     return self.driver.find_element(By.XPATH, self.balance_value).text
