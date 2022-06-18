@@ -14,7 +14,6 @@ from Pages.WithdrawlPage import WithdrawlPage
 class Test1:
 
     valorRetirada = 1
-    valorDeposito = 10
     account_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account"
     operacao_true = "Operação não foi concluída com sucesso."
     operacao_false = "Oparação foi concluída indevidamente."
@@ -29,16 +28,9 @@ class Test1:
         time.sleep(1)
         assert home_page.is_page(self.account_url), "Página incorreta"
         user_page = UserPage(home_page.driver)
-
-        user_page.select_dp_operation(), "Operação de depósito indisponível"
-        user_page.informar_valor(self.valorDeposito)
-        time.sleep(1)
-        assert user_page.confirmar_operacao(self.valorDeposito), "Operação falhou"
-        time.sleep(1)
         user_page.select_wd_operation(), "Operação de retirada indisponível!"
         time.sleep(1)
         user_page.informar_valor(self.valorRetirada)
         time.sleep(1)
-
-        assert user_page.confirmar_operacao(self.valorRetirada), "Operação falhou"
+        assert not user_page.confirmar_operacao(self.valorRetirada), "Operação falhou"
         time.sleep(1)
