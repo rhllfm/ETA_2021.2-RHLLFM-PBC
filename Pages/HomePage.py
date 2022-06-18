@@ -1,4 +1,4 @@
-#tela inicial
+# tela inicial
 import time
 
 from selenium.webdriver.common.by import By
@@ -10,7 +10,6 @@ from Pages.PageObject import PageObject
 
 
 class HomePage(PageObject):
-
     url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login"
     customer_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/customer"
     ng_login_user = "customer"
@@ -36,7 +35,7 @@ class HomePage(PageObject):
     def open_user_login(self):
         btn_list = self.driver.find_elements(By.CLASS_NAME, self.button_class_name)
         for btn in btn_list:
-            if btn.text==self.ng_customer_login_txt:
+            if btn.text == self.ng_customer_login_txt:
                 print(btn)
                 btn.click()
 
