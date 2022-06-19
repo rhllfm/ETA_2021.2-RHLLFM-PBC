@@ -20,7 +20,8 @@ class UserPage(PageObject):
     field_amount_WD = "Amount to be Withdrawn :"
     balance_xPath = "/html/body/div/div/div[2]/div/div[2]/strong[2]"
     btn_confirm_deposit_withdrawl = "btn-default"
-    id_table_list_transaction = "anchor0"
+    id_table_list_transaction = "//tr[contains(@id, 'anchor')]"
+
     btn_reset_xPath = "/html/body/div[1]/div/div[2]/div/div[1]/button[2]"
     valorRetirada = 1
     valorDeposito = 10

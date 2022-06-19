@@ -1,13 +1,11 @@
-#
-#Fazer retirada
-#
 import time
 import pytest
+
 from Pages.UserPage import UserPage
 
-class Test1:
+class Test6:
 
-    @pytest.mark.parametrize("browser", ["chrome"])
+    @pytest.mark.parametrize("browser", UserPage.browsers_list)
     def test_withdrawl_success(self, efetuar_login):
         home_page = efetuar_login
         user_page = UserPage(home_page.driver)

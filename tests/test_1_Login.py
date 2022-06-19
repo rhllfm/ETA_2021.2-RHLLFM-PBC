@@ -1,5 +1,4 @@
 import time
-
 import pytest
 
 from Pages.UserPage import UserPage
@@ -7,7 +6,7 @@ from Pages.UserPage import UserPage
 
 class Test1:
 
-    @pytest.mark.parametrize("browser", ["chrome"])
+    @pytest.mark.parametrize("browser", UserPage.browsers_list)
     def test_click_login_btn(self, open_browser):
         home_page = open_browser
         assert home_page.is_page(home_page.url_login)

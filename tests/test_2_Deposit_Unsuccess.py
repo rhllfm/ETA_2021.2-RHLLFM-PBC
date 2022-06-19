@@ -1,7 +1,9 @@
+import pytest
 from Pages.UserPage import UserPage
 
-
 class Test2:
+
+    @pytest.mark.parametrize("browser", UserPage.browsers_list)
     def test_deposit_zero(self, efetuar_login):
         home_page = efetuar_login
         user_page = UserPage(home_page.driver)
