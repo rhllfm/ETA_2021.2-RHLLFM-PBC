@@ -1,36 +1,19 @@
 #
 #Fazer retirada
 #
-
 import time
-
 import pytest
-
-from Pages.DepositPage import DepositPage
 from Pages.UserPage import UserPage
-from Pages.WithdrawlPage import WithdrawlPage
-
 
 class Test1:
 
-    valorRetirada = 1
-    account_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account"
-    operacao_true = "Operação não foi concluída com sucesso."
-    operacao_false = "Oparação foi concluída indevidamente."
-
-
-    @pytest.mark.parametrize("all_browsers", ["chrome"])
-    def test_withdrawl_success(self, open_all_browsers):
-        home_page = open_all_browsers
-        home_page.open_user_login()
-        home_page.select_user()
-        home_page.login()
-        time.sleep(1)
-        assert home_page.is_page(self.account_url), "Página incorreta"
+    @pytest.mark.parametrize("browser", ["chrome"])
+    def test_withdrawl_success(self, efetuar_login):
+        home_page = efetuar_login
         user_page = UserPage(home_page.driver)
-        user_page.select_wd_operation(), "Operação de retirada indisponível!"
+        user_page.select_operation(user_page.btn_withdrawl_xPath)
         time.sleep(1)
-        user_page.informar_valor(self.valorRetirada)
+        user_page.informar_valor(user_page.valorRetirada)
         time.sleep(1)
-        assert not user_page.confirmar_operacao(self.valorRetirada), "Operação falhou"
+        assert not user_page.confirmar_operacao(user_page.valorRetirada), "Operação falhou"
         time.sleep(1)

@@ -31,7 +31,7 @@ class PageObject:
 
     def is_page(self, url, title=None):
         is_url = self.driver.current_url == url
-
+        self.driver.implicitly_wait(2)
         if title:
             element_class_title = self.driver.find_element(By.CLASS_NAME, self.class_name_title)
             is_title = element_class_title.text.lower() == title.lower()

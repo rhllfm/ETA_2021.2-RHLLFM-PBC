@@ -19,14 +19,6 @@ def open_browser(browser):
     yield home_page
     home_page.close()
 
-
-@pytest.fixture()
-def open_all_browsers(all_browsers):
-    home_page = HomePage(browser=all_browsers)
-    yield home_page
-    home_page.close()
-
-
 @pytest.fixture()
 def efetuar_login(open_browser):
     home_page = open_browser
