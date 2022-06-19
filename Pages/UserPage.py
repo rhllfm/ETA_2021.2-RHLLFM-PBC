@@ -1,4 +1,6 @@
 # Tela do usuário logado
+import time
+
 from selenium.webdriver.common.by import By
 
 from Pages.PageObject import PageObject
@@ -19,8 +21,12 @@ class UserPage(PageObject):
     balance_xPath = "/html/body/div/div/div[2]/div/div[2]/strong[2]"
     btn_confirm_deposit_withdrawl = "btn-default"
     id_table_list_transaction = "anchor0"
+    btn_reset_xPath = "/html/body/div[1]/div/div[2]/div/div[1]/button[2]"
     valorRetirada = 1
     valorDeposito = 10
+    id_calendar_start = "start"
+    id_calendar_end = "end"
+
 
     def __init__(self, driver):
         super(UserPage, self).__init__(driver=driver)
@@ -28,19 +34,13 @@ class UserPage(PageObject):
     def select_operation(self, operation):
         if operation == self.btn_deposit_xPath:
             self.driver.find_element(By.XPATH, self.btn_deposit_xPath).click()
-        elif operation ==  self.btn_withdrawl_xPath:
+            time.sleep(2)
+        elif operation == self.btn_withdrawl_xPath:
             self.driver.find_element(By.XPATH, self.btn_withdrawl_xPath).click()
-        elif operation ==  self.btn_transaction_xPath:
+            time.sleep(2)
+        elif operation == self.btn_transaction_xPath:
             self.driver.find_element(By.XPATH, self.btn_transaction_xPath).click()
-
-    # def select_ts_operation(self):
-    #     self.driver.find_element(By.XPATH, self.btn_transaction_xPath).click()
-    #
-    # def select_dp_operation(self):
-    #     self.driver.find_element(By.XPATH, self.btn_deposit_xPath).click()
-    #
-    # def select_wd_operation(self):
-    #     self.driver.find_element(By.XPATH, self.btn_withdrawl_xPath).click()
+            time.sleep(2)
 
     def check_balance(self):
         balance = self.driver.find_element(By.XPATH, self.balance_xPath).text
@@ -66,3 +66,17 @@ class UserPage(PageObject):
         else:
             print("Valor informado para retirada é maior que valor do balanço")
             return False
+
+    def reset_transactions(self):
+        self.driver.find_element(By.XPATH, self.btn_reset_xPath).click()
+        time.sleep(1)
+
+    def check_transations_table(self):
+        if self.driver.find_element(By.ID, self.id_table_list_transaction):
+            return True
+
+    def set_search_interval(self, start_date, end_date):
+        start = self.driver.find_element(By.ID,self.id_calendar_start)
+        end =  self.driver.find_element(By.ID,self.id_calendar_start)
+        start.send_keys(start_date)
+        end.send_keys(end_date)
