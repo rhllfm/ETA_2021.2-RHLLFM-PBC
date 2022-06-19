@@ -8,7 +8,7 @@ from Pages.PageObject import PageObject
 
 class UserPage(PageObject):
     url_account = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account"
-    url_transaction = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx'
+    url_transaction = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx"
     client_title = "fontBig"
     client_name = "Harry Potter"
     btn_transaction_xPath = "/html/body/div/div/div[2]/div/div[3]/button[1]"
@@ -24,9 +24,6 @@ class UserPage(PageObject):
     btn_reset_xPath = "/html/body/div[1]/div/div[2]/div/div[1]/button[2]"
     valorRetirada = 1
     valorDeposito = 10
-    id_calendar_start = "start"
-    id_calendar_end = "end"
-
 
     def __init__(self, driver):
         super(UserPage, self).__init__(driver=driver)
@@ -71,12 +68,5 @@ class UserPage(PageObject):
         self.driver.find_element(By.XPATH, self.btn_reset_xPath).click()
         time.sleep(1)
 
-    def check_transations_table(self):
-        if self.driver.find_element(By.ID, self.id_table_list_transaction):
-            return True
-
-    def set_search_interval(self, start_date, end_date):
-        start = self.driver.find_element(By.ID,self.id_calendar_start)
-        end =  self.driver.find_element(By.ID,self.id_calendar_start)
-        start.send_keys(start_date)
-        end.send_keys(end_date)
+    def get_qtd_transactions(self):
+        return len(self.driver.find_elements(By.XPATH, self.id_table_list_transaction))
