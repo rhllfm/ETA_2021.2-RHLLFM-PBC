@@ -10,8 +10,8 @@ from Pages.PageObject import PageObject
 
 
 class HomePage(PageObject):
-    url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login"
-    customer_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/customer"
+    url_login = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login"
+    url_customer = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/customer"
     ng_login_user = "customer"
     ng_customer_login_txt = "Customer Login"
     ng_manager_login_txt = "Bank Manager Login"
@@ -27,10 +27,7 @@ class HomePage(PageObject):
         self.open_page()
 
     def open_page(self):
-        self.driver.get(self.url)
-
-    def is_login_url(self):
-        return self.is_page(self.customer_url)
+        self.driver.get(self.url_login)
 
     def open_user_login(self):
         btn_list = self.driver.find_elements(By.CLASS_NAME, self.button_class_name)
@@ -48,6 +45,7 @@ class HomePage(PageObject):
 
     def login(self):
         self.driver.find_element(By.CLASS_NAME, self.btn_login).submit()
+        time.sleep(1)
 
     def close(self):
         self.driver.quit()

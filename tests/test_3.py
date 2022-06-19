@@ -1,5 +1,3 @@
-import time
-
 from Pages.UserPage import UserPage
 
 
