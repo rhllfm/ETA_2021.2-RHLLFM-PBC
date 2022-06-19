@@ -19,6 +19,8 @@ class UserPage(PageObject):
     btn_confirm_deposit_withdrawl = "btn-default"
     url_account = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account"
     url_transaction = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx'
+    qtd_anchor = "//tr[contains(@id, 'anchor')]"
+    reset_btn = "//button[@ng-show='showDate']"
 
     def __init__(self, driver):
         super(UserPage, self).__init__(driver=driver)
@@ -79,3 +81,9 @@ class UserPage(PageObject):
             return True
         else:
             return False
+
+    def get_qtd_transactions(self):
+        return len(self.driver.find_elements(By.XPATH, self.qtd_anchor))
+
+    def click_reset_button(self):
+        self.driver.find_element(By.XPATH, self.reset_btn).click()
