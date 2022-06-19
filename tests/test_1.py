@@ -6,9 +6,10 @@ import time
 
 import pytest
 
+from Pages.UserPage import UserPage
+
 
 class Test1:
-    customer_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account"
 
     @pytest.mark.parametrize("all_browsers", ["chrome"])
     def test_click_login_btn(self, open_all_browsers):
@@ -17,4 +18,6 @@ class Test1:
         home_page.select_user()
         home_page.login()
         time.sleep(1)
-        assert home_page.is_page(self.customer_url), "Página incorreta"
+        assert not home_page.is_login_url(), "Página incorreta"
+        user_page = UserPage(home_page.driver)
+        assert user_page.is_user_page()

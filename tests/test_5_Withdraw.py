@@ -27,7 +27,7 @@ class Test1:
         home_page.select_user()
         home_page.login()
         time.sleep(1)
-        assert home_page.is_page(self.account_url), "Página incorreta"
+        assert home_page.is_login_url(), "Página incorreta"
         user_page = UserPage(home_page.driver)
 
         user_page.select_dp_operation(), "Operação de depósito indisponível"

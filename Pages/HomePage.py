@@ -11,7 +11,6 @@ from Pages.PageObject import PageObject
 
 class HomePage(PageObject):
     url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login"
-    customer_url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/customer"
     ng_login_user = "customer"
     ng_customer_login_txt = "Customer Login"
     ng_manager_login_txt = "Bank Manager Login"
@@ -30,7 +29,7 @@ class HomePage(PageObject):
         self.driver.get(self.url)
 
     def is_login_url(self):
-        return self.is_page(self.customer_url)
+        return self.is_page(self.url)
 
     def open_user_login(self):
         btn_list = self.driver.find_elements(By.CLASS_NAME, self.button_class_name)
