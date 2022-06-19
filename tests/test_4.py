@@ -13,7 +13,7 @@ class Test4:
         user_page.select_operation(user_page.btn_deposit_xPath)
         user_page.informar_valor(user_page.valorDeposito)
         assert user_page.confirmar_operacao(user_page.valorDeposito), "Deposited value is different from the expected."
-        user_page.informar_valor(user_page.valorDeposito)
+        user_page.select_operation(user_page.btn_transaction_xPath)
         assert user_page.is_page(user_page.url_transaction), "Transaction page not found"
         assert user_page.get_qtd_transactions() == 1, 'Quantidade de transacões incorreta'
         user_page.reset_transactions()
